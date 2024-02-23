@@ -1,6 +1,6 @@
 # DebiasingConGater
 
-This repository is dedicated to the models available in the EACL2024 submission.
+This repository is dedicated to the models of the paper [Controllable Gate Adapters (ConGater)](https://arxiv.org/abs/2401.16457).
 
 The infrastructure of the code is similar to the [ModularizedDebiasing](https://github.com/CPJKU/ModularizedDebiasing) from the papers:
 
