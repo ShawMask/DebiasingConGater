@@ -1,0 +1,113 @@
+data_config_bios:
+    task_key: "title"
+    protected_key: "gender"
+    text_key: "bio"
+    train_pkl: "Path to .pkl file"
+    val_pkl: "Path to train.pkl file"
+    test_pkl: "Path to .pkl file"
+    labels_protected_path: "Path to .txt file which contains the labels of the protected attribute"
+    labels_task_path: "Path to .txt file which contains the labels"
+    output_dir: "checkpoints_bios"
+    log_dir: "logs_bios"
+    rf_task: 2 #2
+    rf_prot: 2 #16
+    train_triplet: "Path to train.pkl file"
+data_config_pan16:
+    task_key: "task_label"
+    protected_key: ["gender", "age"]
+    text_key: "text"
+    train_pkl: "Path to .pkl file"
+    val_pkl: "Path to train.pkl file"
+    test_pkl: "Path to .pkl file"
+    labels_protected_path: [
+        "path to gender labels .txt",
+        "path to age labels .txt"
+    ]
+    labels_task_path: "path to task labels .txt""
+    output_dir: "checkpoints_pan16"
+    log_dir: "logs_pan16"
+    train_triplet: [
+        "path to gender triplet .pkl",
+        "path to age triplet .pkl"
+    ]
+    rf_task: 8 #1
+    rf_prot: 8 #16
+    train_triplet_all: "path to .pkl"
+data_config_hatespeech:
+    task_key: "label"
+    protected_key: "dialect"
+    text_key: "tweet"
+    train_pkl: "Path to .pkl file"
+    val_pkl: "Path to train.pkl file"
+    test_pkl: "Path to .pkl file"
+    labels_protected_path: "Path to .txt file which contains the labels of the protected attribute"
+    labels_task_path: "Path to .txt file which contains the labels"
+    output_dir: "checkpoints_hatespeech"
+    log_dir: "logs_hatespeech"
+    rf_task: 8 #16
+    rf_prot: 8 #16
+    train_triplet: ".pkl file for triplet"
+model_config:
+    model_name: "google/bert_uncased_L-4_H-256_A-4" # "bert-base-uncased" # "google/bert_uncased_L-4_H-256_A-4" # "google/bert_uncased_L-2_H-128_A-2" # roberta-base
+    batch_size: 64
+    tokenizer_max_length: 120
+congater_config:
+    congater_position: "all"
+    default_trainable_parameters: "bert+task_head"
+    training_method: "par"
+    congater_version: 1
+    num_gate_layers: 2
+    gate_squeeze_ratio: 4
+    evaluate_w: [0,0.2,0.4,0.6,0.8,1]
+    custom_init: 0
+train_config:
+    weighted_loss_protected: False
+    triplets_loss: False
+    bottleneck: False
+    unstructured_diff_pruning: False
+    structured_diff_pruning: False
+    alpha_init: 5
+    concrete_samples: 1
+    concrete_lower: -1.5
+    concrete_upper: 1.5
+    num_epochs: 15
+    num_epochs_warmup: 2
+    num_epochs_finetune: 15
+    num_epochs_fixmask: 15
+    weight_decay: 0.0
+    learning_rate: 2e-5 #2e-5
+    learning_rate_bottleneck: 2e-4 #1e-4
+    learning_rate_task_head: 8e-4 #1e-4
+    learning_rate_adv_head: 2e-4
+    learning_rate_alpha: 0.1
+    task_dropout: 0.1 #0.1
+    task_n_hidden: 0
+    adv_dropout: 0.0 #0.1
+    adv_n_hidden: 2 #2
+    adv_count: 1 #5
+    adv_lambda: 1.
+    bottleneck_dim: 16
+    bottleneck_dropout: 0.0
+    optimizer_warmup_steps: 0
+    sparsity_pen: 1.25e-7
+    max_grad_norm: 0.5
+    fixmask_pct: 0.1
+    logging_step: 5
+    cooldown: 75
+    modular_adv_task_head: False
+    modular_freeze_single_task_head: False
+    modular_adv_merged: False
+    modular_sparse_task: False
+    modular_merged_cutoff: False
+    modular_merged_min_pct: 0.01
+    augmentation: False
+adv_attack:
+    weight_decay: 0.001
+    num_epochs: 30
+    learning_rate: 1e-4
+    adv_n_hidden: 1
+    adv_count: 5
+    adv_dropout: 0.2
+    logging_step: 5
+    cooldown: 5
+    attack_batch_size: 64
