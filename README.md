@@ -15,6 +15,11 @@ and
 
 ## Classification Task 
 
+### Dataset 
+- All the datasets for the classification task are publicly available for download. 
+- We have a pre-processed version of the data for train, eval and test in seperate .pkl file which we use to call the data loader and Dataset file
+- Due to the size of the dataset we are not able to provide them in the repository but we provided the config file for the dataset (Without Path) 
+
 ### Environment 
 To Install the environment after instilling Conda or Mini conda run the command 
 
